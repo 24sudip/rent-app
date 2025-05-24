@@ -1,0 +1,125 @@
+
+07-NOV-24
+    WEB
+        Profile card sepertated
+        Plan card sepertated
+        Profile setting(View & Interest control)
+        Profile visiblity fixed
+    API
+        --
+
+---------------------------------------------
+
+06-NOV-24
+    WEB
+        Profile setting page
+        Profile completion
+        Dashboard plan card
+        Profile Views & click count
+        Matching profile list
+    API
+        --
+
+---------------------------------------------
+
+30-OCT-24
+    WEB
+        Access Authorization
+        Package Subscribe
+    API
+        --
+
+---------------------------------------------
+
+29-OCT-24
+    WEB
+        Package Access Manages
+    API
+        --
+
+---------------------------------------------
+
+28-OCT-24
+    WEB
+        Message Send Ajax
+        Message Read-Unread
+    API
+        --
+
+---------------------------------------------
+
+24-OCT-24
+    WEB
+        Invitations (List)
+        Invitations (sent, accept, deny)
+        Send Interest Button functionality
+    API
+        --
+
+---------------------------------------------
+
+22-OCT-24
+    WEB
+        Frontpage Search
+        Blog Lists
+        Blog Details
+        Blog Filters
+        Profile images
+    API
+        --
+
+---------------------------------------------
+
+21-OCT-24
+    WEB
+        Profile Update Bug fix
+        Profile View
+        Browse Profiles
+        Profile Filters
+        Profile Details        
+    API
+        --
+
+---------------------------------------------
+
+20-OCT-24
+    WEB
+        Profile Update
+    API
+        --
+
+---------------------------------------------
+
+17-OCT-24
+    WEB
+        Homepage Photo Gallery
+        User auth pages
+        Auth functionality
+    API
+        --
+
+---------------------------------------------
+
+16-OCT-24
+    WEB
+        Navbar services dynamic
+        Contact infos dynamic
+        Wedding list
+        Wedding stories
+        Wedding gallery
+        Homepage Banners
+    API
+        --
+
+---------------------------------------------
+
+15-OCT-24
+    WEB
+        Page Setup
+        Services dynamic
+        Testimonial dynamic
+        How It work dynamic
+        Our teams dynamic
+        Blogs dynamic
+    API
+        --

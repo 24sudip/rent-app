@@ -1,0 +1,263 @@
+@media (max-width: 575.98px) {
+
+    .quicktech-postlist-table {
+        width: max-content;
+        border-collapse: collapse;
+    }
+    .navbar-nav {
+        gap: 0px;
+    }
+    .quikctech-video-call-inner {
+        padding:0 ;
+        height: 300px;
+        overflow-x: hidden !important;
+        overflow-y: auto;
+        width: 100%;
+    }
+    .expandable-container {
+        width: 100%;
+        border: 1px solid #ccc;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+    .quikctech-search-box input {
+        border: none;
+        outline: none;
+        flex: 1;
+        width: 132px;
+    }
+    .quikctech-properties-inner img {
+        height: 90px;
+        width: 90px !important;
+    }
+    .quikctech-properties-inner h4 {
+        font-size: 13px;
+        font-weight: 400;
+        padding-top: 9px;
+        color: black;
+    }
+    .quicktech-return-product{
+        padding: 0 16px;
+    }
+    .quicktech-blog-d-img img {
+        height: 200px;
+    }
+    .quicktech-img-blog img {
+        height: 203px;
+    }
+    .quicktech-blog-details-description p{
+        text-align: justify;
+    }
+    .quicktech-product-main-inner {
+        display: flex;
+        gap: 13px;
+        flex-direction: column;
+    }
+    .quiktech-categor-p-img {
+        width: 100%;
+    }
+    .quicktech-categories-p-details {
+        width: 100%;
+    }
+    .quikctech-price a {
+        padding: 6px 8px;
+        background-color: #ffe000;
+        color: black;
+        border-radius: 4px;
+    }
+    .quikctech-price h6 {
+        color: black;
+        font-weight: 700;
+        font-size: 16px;
+    }
+    .quikctech-price h6 {
+        color: black;
+        font-weight: 700;
+        font-size: 16px;
+    }
+    .quikctech-blog-text h5 {
+        color: black;
+        font-size: 15px;
+    }
+    .quikctech-blog-text p {
+        color: black;
+        font-size: 14px;
+    }
+    .quicktech-propertygallery-img img {
+        height: 275px;
+        cursor: pointer;
+    }
+    .custom-swiper-container {
+        width: 100%;
+        height: 365px;
+    }
+    .quicktech-map-search input {
+        padding: 10px;
+        padding-left: 30px;
+        width: 100%;
+        border-radius: 4px;
+        position: relative;
+        padding-right: 36px;
+    }
+    .quicktech-available-room-inner {
+        padding: 0;
+    }
+    .quicktech-starts {
+        font-size: 14px;
+    }
+    .quicktech-single-sharing-inner {
+        padding: 4px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+    .quicktech-modal-dialog {
+        max-width: 100%;
+    }
+    .quicktech-single-middle ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr ;
+        row-gap: 10px;
+    }
+    .filter-container {
+        width: 100%;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        position: sticky;
+        top: 17px;
+    }
+
+
+    .quicktech-modal-img img {
+        width: 100%;
+        height: auto;
+    }
+
+    .quicktech-img-rent img {
+        height: 414px;
+        width: 100%;
+    }
+
+    .quikctech-demo-search-input input {
+        padding: 0px;
+        border: 1px solid #ddd;
+        width: 60%;
+    }
+    
+    .prev{
+        position: absolute;
+        top: 68px;
+        left: 8px;
+        font-size: 30px;
+        cursor: pointer;
+        transition: 0.4s;
+        z-index: 9999;
+    }
+    .next{
+        position: absolute;
+        top: 68px;
+        right: 8px;
+        font-size: 30px;
+        cursor: pointer;
+        transition: 0.4s;
+        z-index: 9999;
+    }
+    .nextt {
+        position: absolute;
+        top: 66px;
+        right: -4px;
+        font-size: 30px;
+        cursor: pointer;
+        transition: 0.4s;
+        z-index: 9999;
+    }
+
+    .prevv {
+        position: absolute;
+        top: 66px;
+        left: -4px;
+        font-size: 30px;
+        cursor: pointer;
+        transition: 0.4s;
+        z-index: 9999;
+    }
+
+    .quicktech-copyright img {
+        height: 80px;
+        width: 100%;
+    }
+     
+    .quicktech-rent-listt iframe {
+        width: 100%;
+        height: 233px;
+    }
+    .quicktech-rent-textt h1 {
+        font-size: 33px;
+    }
+
+    }
+    
+    @media (min-width: 576px) and (max-width: 766.98px) {
+        .filter-container {
+            width: 100%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            position: sticky;
+            top: 17px;
+        }
+        .quicktech-img-rent img {
+            height: 500px;
+            width: 100%;
+        }
+       
+        .quicktech-starts {
+            font-size: 14px;
+        }
+        .quicktech-single-middle ul {
+            display: grid;
+            grid-template-columns: 1fr 1fr ;
+            row-gap: 10px;
+        }
+        .custom-swiper-container {
+            width: 100%;
+            height: 348px;
+        }
+
+        .quicktech-propertygallery-img img {
+            height: 248px;
+            cursor: pointer;
+        }
+
+        .quikctech-blog-text p {
+            color: black;
+            font-size: 14px;
+        }
+        .quicktech-img-blog img {
+            height: 174px;
+        }
+        .quicktech-blog-d-img img {
+            height: 303px;
+        }
+
+        .quikctech-blog-text h5 {
+            color: black;
+            font-size: 15px;
+        }
+    
+    }
+    
+    @media (min-width: 767px) and (max-width: 991.98px) {
+        .quicktech-img-rent img {
+            height: 330px;
+            width: 100%;
+        }
+    }
+    
+    @media (min-width:  991.98px) and (max-width: 1400px) {
+       
+    }

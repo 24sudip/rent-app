@@ -1,0 +1,1092 @@
+/* common css start */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", serif;
+}
+body{
+    overflow-x: hidden;
+    font-family: "Inter", serif;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+img{
+    vertical-align: middle;
+}
+
+
+/* common css end */
+
+/* navbar */
+.quikctech-right-nav{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.quikctech-sign-up-btn{
+    padding: 6px 19px;
+    background-color: #ffe000;
+    color: black;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+.quikctech-sign-up-btn:hover{
+  
+    background-color: transparent;
+    border: 2px solid #ffe000;
+
+}
+
+.quikctech-sign-up-btnn{
+    padding: 6px 19px;
+    background-color: transparent;
+    color: black;
+    border-radius: 4px;
+    border: 2px solid #ffe000;
+}
+.quikctech-sign-up-btnn:hover{
+    background-color: #ffe000;
+    border: 2px solid transparent;
+}
+
+.navbar{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav{
+    gap: 23px;
+}
+.nav-link{
+    color: black;
+    font-weight: 600;
+}
+/* navbar */
+
+/* banner */
+
+#quicktech-banner{
+    height: 100vh;
+}
+
+.quicktech-banner-main span{
+    background: linear-gradient(to right, #ffe000, #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.quicktech-banner-main h4{
+    font-weight: 400;
+}
+
+.quikctech-options {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    overflow-x: auto;
+    width: 100%;
+}
+.quikctech-option {
+	display: flex;
+	align-items: end;
+	cursor: pointer;
+	padding: 5px;
+	border-radius: 5px;
+	transition: 0.3s;
+	gap: 10px;
+}
+.quikctech-option img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+}
+.quikctech-option span {
+    font-size: 14px;
+    margin-top: 5px;
+}
+.quikctech-option.quikctech-selected img {
+    border-color: black;
+}
+.quikctech-search-box {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+}
+.quikctech-search-box i {
+    margin-right: 10px;
+}
+.quikctech-search-box input {
+    border: none;
+    outline: none;
+    flex: 1;
+}
+.quikctech-search-btn {
+    background: #ffe000;
+    color: black;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.quicktech-im-inner {
+	display: flex;
+	gap: 10px;
+	align-items: flex-end;
+	width: 100%;
+	overflow-x: auto;
+	
+	/* For WebKit Browsers (Chrome, Safari, Edge) */
+	scrollbar-width: thin; /* For Firefox */
+	scrollbar-color: #888 transparent; /* Firefox */
+}
+
+/* WebKit Browsers */
+.quicktech-im-inner::-webkit-scrollbar {
+	height: 2px; /* Thin scrollbar for horizontal scrolling */
+	width: 20px;  /* Thin scrollbar for vertical scrolling */
+}
+
+.quicktech-im-inner::-webkit-scrollbar-track {
+	background: transparent; /* Hide scrollbar track */
+}
+
+.quicktech-im-inner::-webkit-scrollbar-thumb {
+	background: #888; /* Color of the scrollbar */
+	border-radius: 5px;
+}
+
+.quicktech-im-inner::-webkit-scrollbar-thumb:hover {
+	background: #555; /* Darker on hover */
+}
+
+
+.quikctech-border{
+    background-color: white !important;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+}
+
+.quikctech-option.quikctech-selected span {
+	border-bottom: 2px solid black;
+}
+
+.quikctech-searchh{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+.quikctech-find-text p{
+    width: max-content;
+}
+
+.quikctech-head-main h5{
+  font-weight: 400;
+}
+/* banner */
+
+/* what */
+.expandable-container {
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.expandable-container:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.expandable-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.expandable-content {
+    display: none;
+    margin-top: 10px;
+    color: #666;
+}
+.expandable-container.open .expandable-content {
+    display: block;
+    text-align: center;
+}
+
+.expandable-header span{
+    font-size: 18px;
+    color: black;
+}
+
+#videoTourButton{
+    width: 100%;
+}
+
+.quikctech-video-call-inner {
+	padding: 0 112px;
+	height: 634px;
+    overflow-x:hidden !important ;
+	overflow-y: auto;
+}
+/* what */
+
+/* properties */
+.quikctech-properties-inner img {
+	height: 160px;
+	border-radius: 50%;
+	width: 160px !important;
+}
+
+.quikctech-properties-inner h4{
+    font-size: 20px;
+  font-weight: 400;
+  padding-top: 9px;
+  color: black;
+}
+
+.gapp{
+    row-gap: 20px;
+}
+/* properties */
+
+/* reward */
+.quicktech-return-product{
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.quicktech-reward-img img{
+      height: 60px;
+}
+
+.quicktech-reward-img {
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	line-height: 100px;
+	border-radius: 50%;
+	margin: auto;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: -50px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.quicktech-reward-text{
+    text-align: center;
+  padding-top: 65px;
+}
+
+.swiper {
+	width: 100%;
+	height: 331px;
+	padding-top: 31px;
+}
+  
+.quicktech-btn-pass a{
+    padding: 5px 20px;
+    background-color: #ffe000;
+    border-radius: 5px;
+    color: black;
+}
+
+
+.quicktech-blog-view{
+    padding: 6px 20px;
+    background-color: #000000;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.quikctech-blog-text{
+    padding: 14px;
+}
+
+.quikctech-blog-text h5{
+    color: black;
+}
+.quikctech-blog-text p{
+    color: black;
+}
+
+.quicktech-blog-date p{
+         color: rgba(0, 0, 0, 0.616);
+         font-size: 14px;
+}
+
+.quicktech-blog-inner{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+}
+.quicktech-blog-inner:hover{
+  
+    box-shadow: none;
+}
+
+.quicktech-img-blog img{
+    height: 237px;
+}
+/* reward */
+
+/* footer */
+#quicktech-footer{
+    padding: 30px 0;
+    background-color:#EDF1FE;
+    padding-bottom: 5px !important;
+
+}
+
+.quicktech-footer-logo img{
+    height: 200px;
+}
+
+.quicktech-footer-menu ul h5{
+    font-weight: 600;
+}
+
+.quicktech-footer-menu ul{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.quicktech-footer-menu ul li a{
+    color: rgba(0, 0, 0, 0.753);
+  transition: 0.3s eaase;
+
+}
+
+.quicktech-footer-menu ul li a:hover{
+         color: black;
+         
+}
+
+
+.quicktech-map iframe{
+    width: 100% !important;
+    height: 150px !important;
+}
+
+.quikctech-subs-input input{
+    width: 90%;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.quikctech-subs-input button{
+    width: 90%;
+    padding: 5px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    
+}
+/* footer */
+
+
+/* categories */
+.filter-container {
+	width: 250px;
+	border: 1px solid #ddd;
+	padding: 10px;
+	border-radius: 5px;
+	position: sticky;
+	top: 17px;
+}
+.filter-container h5{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+.filter-title {
+    font-weight: bold;
+}
+.price-range {
+    display: flex;
+    flex-direction: column;
+}
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.quicktech-cate-checkbox input{
+    padding-top: 10px;
+}
+
+.quiktech-categor-p-img{
+    width: 40%;
+}
+.quicktech-cate img {
+	height: 267px;
+	border-radius: 5px;
+}
+
+.quicktech-product-main-inner{
+    display: flex;
+    gap: 13px;
+}
+
+.quicktech-categories-p-details{
+    width: 60%;
+}
+
+.quicktech-wishlist button{
+   border: none;
+   background-color: transparent;
+   width: 30px;
+   height: 30px;
+   line-height: 30px;
+   border: 1px solid #ddd;
+   border-radius: 50%;
+   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.quicktech-offers{
+    padding-top: 20px;
+}
+.quicktech-offers li{
+    padding-top: 10px;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.705);
+}
+.quicktech-offers li img{
+    height: 21px;
+    padding-right: 5px;
+}
+
+.quikctech-price a{
+    padding: 6px 20px;
+    background-color: #ffe000;
+    color: black;
+    border-radius: 4px;
+}
+
+
+.quicktech-product-main-inner{
+    border: 1px solid #ddd;
+  padding: 13px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+
+.quicktech-product-main-inner:hover{
+    box-shadow: none;
+}
+.quikctech-price h6 {
+	color: black;
+	font-weight: 700;
+	font-size: 18px;
+}
+
+
+.quicktech-blog-d-img img{
+    height: 450px;
+}
+
+
+/* categories */
+
+
+/* properties details */
+.custom-swiper-container {
+    width: 100%;
+    height: 430px;
+}
+
+
+.quicktech-propertygallery-img img{
+    height: 350px;
+    cursor: pointer;
+}
+.quicktech-modal-dialog {
+    max-width: 50%;
+}
+.quicktech-modal-content {
+    background: transparent;
+    border: none;
+}
+.quicktech-modal-img img {
+    width: 100%;
+    height: 700px;
+}
+
+.quicktech-property-details-head h4 {
+	padding-bottom: 4px;
+	background-color: #ffe1004d;
+	padding: 7px;
+	font-size: 20px;
+}
+.quicktech-property-details-head p{
+    text-align: justify;
+}
+
+.quicktech-amenite-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.quicktech-rent-list p{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 17px;
+}
+
+.quicktech-rent-list {
+    max-height: 230px;
+  overflow-y: auto;
+}
+.quicktech-rules-list li{
+    padding-bottom: 10px;
+}
+.quicktech-map-search input{
+    padding: 10px;
+    padding-left: 30px;
+   width: 100%;
+   border-radius: 4px;
+   position: relative;
+}
+
+.quicktech-map-search{
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+
+.quicktech-location-icon{
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    border: none;
+    background-color: transparent;
+}
+
+.quicktech-search-icon{
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    border: none;
+    background-color: transparent;
+}
+
+.quicktech-rent-listt iframe{
+    width: 100%;
+    height: 350px;
+}
+
+.quicketch-property-owner-img img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.quicketch-property-owner-img{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+}
+.quicketch-property-owner-img h6{
+   padding-top: 10px;
+}
+.quicktech-property-owner{
+    padding: 10px;
+    background-color: #ffe1004d;
+}
+.quikctech-property-owner-message{
+    padding: 10px;
+    border: 1px solid #ffe1004d;
+    border-radius: 4px;
+}
+
+.quicktech-single-sharing-inner{
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.quikctech-single-sharing-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quicktech-starts{
+    font-size: 18px;
+}
+.quicktech-rent-price{
+    color: #ffe000;
+    font-weight: 700;
+}
+
+.quikctech-single-sharing-top{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 13px;
+}
+.quicktech-single-middle ul {
+	display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+ row-gap: 10px;
+}
+
+.quicktech-single-bottom{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    align-items: center;
+}
+.quicktech-available-room-inner{
+    padding: 0 40px;
+}
+.quicktech-available-room-inner button{
+    padding: 6px 20px;
+    background-color: #ffe000;
+    color: black;
+    border: none;
+    border-radius: 4px;
+}
+
+.quicktech-filter {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	padding: 7px;
+	background-color: white;
+}
+
+/* properties details */
+
+/* register */
+.quikctech-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+.quikctech-form-group {
+    margin-bottom: 15px;
+}
+.quikctech-label {
+    display: block;
+    margin-bottom: 5px;
+}
+.quikctech-input, .quikctech-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.quikctech-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.quikctech-btn:hover {
+    background: #218838;
+}
+
+/* register */
+
+.quicktech-available-room-inner{
+    position: sticky;
+  top: 19px;
+}
+
+
+.quikctech-list-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.quikctech-list-label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.quikctech-list-input, .quikctech-list-select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.quikctech-list-radio-group, .quikctech-list-checkbox-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.quikctech-list-submit-button {
+    background-color: #ffe000;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border: 2px solid transparent;
+    transition: 0.3s ease;
+}
+
+.quikctech-list-submit-button:hover {
+    background-color: white;
+    border: 2px solid #ffe000;
+    color: black;
+}
+.required {
+    color: red;
+}
+
+.quikctech-list-note {
+    font-size: 12px;
+    color: gray;
+    margin-top: 10px;
+}
+
+.quicktech-doctor-panel-menu ul {
+	display: flex;
+	gap: 15px;
+	/* justify-content: center; */
+	flex-direction: column;
+}
+        
+       .quicktech-doctor-panel-menu a {
+	/* border: 1px solid #dddd; */
+	padding: 10px;
+	border-radius: 5px;
+	background-color: white;
+	border-bottom: 1px solid #ddd;
+    color: black;
+}
+.quicktech-doctor-panel-menu a:hover{
+    background-color:#ffe000;
+    color:black;
+}
+.quicktech-doctor-panel-menu{
+    background-color:white;
+    padding:20px;
+    display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quicktech-doc-dash{
+    display: flex;
+  justify-content: space-between;
+  padding: 44px 24px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.75);
+}
+
+.quicktech-dash-text h3{
+    font-weight:600;
+    font-size:20px;
+}        
+  
+ .quicktech-dash-text p {
+	font-size: 23px;
+	padding-top: 12px;
+	padding-left: 6px;
+	font-weight: 500;
+}     
+.quicktech-doctor-panel-menu a img{
+    height:20px;
+}
+        
+        .quikctech-dash-img img{
+            height:50px;
+        }
+        
+       .quikctech-pres-up-btn {
+	padding: 2px 6px;
+	background-color: #ff1f5e;
+	font-size: 13px;
+	height: 32px;
+	color: white;
+	border-radius: 5px;
+}
+
+.quikctech-option {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+  .quikctech-option.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #rentchangingtext{
+    background: linear-gradient(to right, #ffe000, #000000);
+    background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  }
+
+  .quicktech-rent-textt h1{
+         font-size: 43px;
+  }
+
+  .quicktech-rent-textt h5{
+    padding-top: 13px;
+  }
+
+  .quicktech-img-rent img{
+       height: 700px;
+  }
+
+  .quicktech-rent-textt{
+    padding: 74px 0;
+  }
+
+  .quicktech-cat-one {
+	width: 100px;
+	border: 1px solid #ddd;
+	text-align: center;
+	padding: 12px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: border-color 0.3s ease;
+	padding-bottom: 0 !important;
+	height: 93px;
+}
+  
+  .quicktech-cat-one.active {
+    border-color: black;
+  }
+
+  .quicktech-cat-one img{
+    height: 33px;
+  padding-bottom: 3px;
+  }
+
+  .quikctech-demo-search-input input{
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  .quikctech-demo-search-input button{
+    padding: 9px;
+    border: none;
+    background-color: #ffe000;
+  }
+
+  .quikctech-demo-search-input{
+    display: flex;
+  }
+
+  .quikctech-cat-inner{
+    width: 100%;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  }
+
+  .quicktech-cat-one p{
+    font-size: 13px;
+  }
+
+  .quicktech-cate-checkbox select{
+      width: 100%;
+      padding: 6px;
+  }
+
+  .custom-slider {
+    width: 100%;
+    height: auto;
+}
+.custom-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: #007bff;
+    color: white;
+}
+
+.quicktech-news-inner{
+    width: 100%;
+
+}
+.quikctech-news-video iframe{
+    width: 100% !important;
+    height: 220px;
+}
+
+#quicktech-swiper-unique {
+    width: 100%;
+    height: auto;
+}
+.quicktech-swiper-container .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quicktech-clients-img img{
+    width: 100%;
+}
+
+
+.c-img img{
+    width: 100%;
+}
+.c-img{
+    padding-left: 20px;
+}
+#company{
+    position: relative;
+}
+.prev{
+    position: absolute;
+    top: 95px;
+    left: 55px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.4s;
+    z-index: 9999;
+}
+.next{
+    position: absolute;
+    top: 95px;
+    right: 45px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.4s;
+    z-index: 9999;
+}   
+.prev:hover{
+    color: red;
+} 
+.next:hover{
+    color: red;
+}
+
+#companys{
+    position: relative;
+}
+.prevv{
+    position: absolute;
+    top: 95px;
+    left: 55px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.4s;
+    z-index: 9999;
+}
+.nextt{
+    position: absolute;
+    top: 95px;
+    right: 45px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.4s;
+    z-index: 9999;
+}   
+.prevv:hover{
+    color: red;
+} 
+.nextt:hover{
+    color: red;
+}
+
+#quikctech-our-clients{
+    height: 400px;
+}
+
+.quicktech-copyright img{
+    height: 80px;
+}
+
+.profile-picture-container img{
+    height: 130px;
+    width: 130px;
+}
+
+
+/* post */
+.quicktech-post-form{
+    border: 1px solid #ddd;
+    padding: 23px;
+}
+
+.add-more{
+    background-color: #ffe000;
+    border: none;
+    color: black;
+    font-weight: 600;
+}
+
+.quicktech-postlist-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.quicktech-postlist th, .quicktech-postlist td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.quicktech-postlist th {
+    background-color: #ffe000;
+}
+
+.quikctech-post-list-all{
+    overflow-x: auto;
+}
+/* post */
+
+.quicktech-premium-card {
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+.quicktech-premium-card:hover {
+    transform: scale(1.02);
+}
+.quicktech-premium-card-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.quicktech-premium-btn {
+    border-radius: 50px;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+}
