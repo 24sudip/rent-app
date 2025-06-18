@@ -11,17 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('package_orders', function (Blueprint $table) {
+        Schema::create('payment_packages', function (Blueprint $table) {
             $table->id();
-            $table->integer('payment_id');
-            $table->integer('user_id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('total_amount');
             $table->integer('package_id');
-            $table->date('expired_at');
             $table->string('invoice_no');
             $table->string('order_date');
             $table->string('order_month');
             $table->string('order_year');
-            $table->string('status');
+            $table->string('status')->default('Unpaid');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('package_orders');
+        Schema::dropIfExists('payment_packages');
     }
 };

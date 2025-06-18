@@ -74,5 +74,14 @@ class Property extends Model
     {
         return $this->hasMany(MultiImage::class, 'property_id', 'id');
     }
+    /**
+     * Get the user that owns the Property
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function manager()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
 

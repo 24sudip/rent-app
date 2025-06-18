@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Package;
+use App\Models\{Package, PaymentPackage};
 use App\Models\PackageOrder;
 use App\Models\PropertyCategory;
 use App\Models\User;
@@ -135,7 +135,36 @@ class ManagerController extends Controller
                 );
                 return redirect()->back()->with($notification);
             } else {
-                return "<h1>Payment Gateway For Premium</h1>";
+                $user = Auth::user();
+                $payment_package = PaymentPackage::create([
+                    'name'=>$user->name,
+                    'email'=>$user->email,
+                    'phone'=>$user->phone,
+                    'address'=>$user->address,
+                    'total_amount'=>$package->price,
+                    'package_id'=>$package->id,
+                    'invoice_no'=>'RNT'. mt_rand('10000000','99999999'),
+                    'order_date'=>now()->format('d F Y'),
+                    'order_month'=>now()->format('F'),
+                    'order_year'=>now()->format('Y'),
+                ]);
+                $expired_at = Carbon::now()->addDays($package->duration);
+                PackageOrder::create([
+                    'payment_id'=>$payment_package->id,
+                    'user_id'=>Auth::id(),
+                    'package_id'=>$package->id,
+                    'expired_at'=>$expired_at,
+                    'invoice_no'=>$payment_package->invoice_no,
+                    'order_date'=>now()->format('d F Y'),
+                    'order_month'=>now()->format('F'),
+                    'order_year'=>now()->format('Y'),
+                    'status' => 0
+                ]);
+                $notification = array(
+                    'message' => 'You Have Subscribed Successfully',
+                    'alert-type' => 'success'
+                );
+                return redirect()->back()->with($notification);
             }
         } elseif($package_order->package->type == 'Premium' && $package->type == 'Free') {
             $notification = array(
@@ -149,8 +178,43 @@ class ManagerController extends Controller
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
+        } elseif($package_order->payment_id == 0 || $package_order->status == 1) {
+            $user = Auth::user();
+            $payment_package = PaymentPackage::create([
+                'name'=>$user->name,
+                'email'=>$user->email,
+                'phone'=>$user->phone,
+                'address'=>$user->address,
+                'total_amount'=>$package->price,
+                'package_id'=>$package->id,
+                'invoice_no'=>'RNT'. mt_rand('10000000','99999999'),
+                'order_date'=>now()->format('d F Y'),
+                'order_month'=>now()->format('F'),
+                'order_year'=>now()->format('Y'),
+            ]);
+            $expired_at = Carbon::now()->addDays($package->duration);
+            $package_order->update([
+                'payment_id'=>$payment_package->id,
+                'user_id'=>Auth::id(),
+                'package_id'=>$package->id,
+                'expired_at'=>$expired_at,
+                'invoice_no'=>$payment_package->invoice_no,
+                'order_date'=>now()->format('d F Y'),
+                'order_month'=>now()->format('F'),
+                'order_year'=>now()->format('Y'),
+                'status' => 0
+            ]);
+            $notification = array(
+                'message' => 'You Have Subscribed Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
         } else {
-            return "<h1>Payment Gateway For Premium</h1>";
+            $notification = array(
+                'message' => 'Previous Payment Is Not Confirmed By Admin Yet',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
         }
     }
 }

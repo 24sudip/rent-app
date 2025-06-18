@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Renth</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -388,6 +389,46 @@
             toastr.error("{{ $error }}");
         @endforeach
     @endif
+</script>
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content'),
+        },
+    });
+    // Add to wishlist
+    function addToWishlist(property_id) {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/add-to-wishList/"+property_id,
+            success: function (data) {
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success,
+                    })
+                } else {
+                Toast.fire({
+                    type: 'error',
+                    icon: 'error',
+                    title: data.error,
+                    })
+                }
+                // End Message
+            },
+            // contentType: "application/json; charset=utf-8",
+            // data: "data",
+        });
+    }
 </script>
 </body>
 </html>

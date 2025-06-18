@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 // use App\Models\Service;
 // use App\Models\Testimonial;
 // use App\Models\Blog;
-// use App\Models\Wedding;
+
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Toastr;
@@ -30,15 +30,18 @@ class FrontendController extends Controller
         $division_properties = [];
         $district_properties = [];
         $upazila_properties = [];
-        $division_properties = Property::where('property_category_id', $request->category_id)->with('division')
+        $division_properties = Property::where('property_category_id', $request->category_id)
+        ->where('status', 1)->with('division')
         ->whereHas('division', function ($q) use ($location) {
             $q->where('name','like','%'.$location.'%');
         })->get();
-        $district_properties = Property::where('property_category_id', $request->category_id)->with('district')
+        $district_properties = Property::where('property_category_id', $request->category_id)
+        ->where('status', 1)->with('district')
         ->whereHas('district', function ($q) use ($location) {
             $q->where('name','like','%'.$location.'%');
         })->get();
-        $upazila_properties = Property::where('property_category_id', $request->category_id)->with('upazila')
+        $upazila_properties = Property::where('property_category_id', $request->category_id)
+        ->where('status', 1)->with('upazila')
         ->whereHas('upazila', function ($q) use ($location) {
             $q->where('name','like','%'.$location.'%');
         })->get();
@@ -57,7 +60,7 @@ class FrontendController extends Controller
             'upazilla_id'=>'required',
         ]);
         $properties = Property::where(['division_id'=>$request->division_id,'district_id'=>$request->district_id,
-        'upazilla_id'=>$request->upazilla_id])->get();
+        'upazilla_id'=>$request->upazilla_id,'status'=>1])->get();
         $divisions = Division::get(['id','name']);
         return view('rent-frontend.filter-property', compact('properties','divisions'));
     }
@@ -77,7 +80,20 @@ class FrontendController extends Controller
             'resident_type'=>'required',
         ]);
         $divisions = Division::get(['id','name']);
-        $properties = Property::where(['gender'=>$request->gender,'resident_type'=>$request->resident_type])->get();
+        $properties = Property::where(['gender'=>$request->gender,'resident_type'=>$request->resident_type,'status'=>1])
+        ->get();
         return view('rent-frontend.filter-property', compact('properties','divisions'));
+    }
+
+    public function ClearFilter() {
+        $divisions = Division::get(['id','name']);
+        $properties = Property::with('rooms')->where('status', 1)->latest()->limit(2)->get();
+        return view('rent-frontend.filter-property', compact('properties','divisions'));
+    }
+
+    public function PropertyDetails($id) {
+        return view('rent-frontend.property-details', [
+            'property' => Property::findOrFail($id)
+        ]);
     }
 }

@@ -10,7 +10,7 @@
             <div class="col-lg-3 col-md-3 d-none d-lg-block d-md-none">
                 <div class="filter-container">
                     <h5>
-                        <a href="#" style="float:right; color:blue; text-decoration:none; font-size: 16px;">
+                        <a href="{{ route('clear.filter') }}" style="float:right; color:blue; text-decoration:none; font-size: 16px;">
                             Clear All
                         </a>
                     </h5>
@@ -122,7 +122,9 @@
                             <div class="quicktech-categories-p-details">
                                 <div class="d-flex justify-content-between quicktech-wishlist">
                                     <h3>{{ $property->title }}</h3>
-                                    <button><i class="fa-solid fa-heart"></i></button>
+                                    <a title="Add To Wishlist" class="action-btn" id="{{ $property->id }}" onclick="addToWishlist(this.id)" style="cursor: pointer;color:black;">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </a>
                                 </div>
                                 <span>
                                     {{ $property->address }}
@@ -142,12 +144,14 @@
                                     <li>{{ $property->upazila->name }}</li> --}}
                                 </ul>
                                 <hr>
-
-                                <div class="quikctech-price d-flex justify-content-between align-items-center">
-                                    <h6>Starts from Tk.{{ $property->starting_price }}</h6>
-                                    <a href="propertydetails.html">I am interested</a>
-                                </div>
-
+                                @foreach ($property->rooms as $key => $room)
+                                    @if ($key < 1)
+                                    <div class="quikctech-price d-flex justify-content-between align-items-center">
+                                        <h6>Starts from Tk.{{ $room->price }}</h6>
+                                        <a href="{{ route('property.details', $property->id) }}">I am interested</a>
+                                    </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                         <br>
@@ -170,49 +174,63 @@
     </div>
     <div class="offcanvas-body">
         <div class="filter-container">
-            <h5>Filters <a href="#" style="float:right; color:blue; text-decoration:none; font-size: 16px;">Clear All</a></h5>
-            <div class="quicktech-cate-checkbox">
-                <span class="filter-title">Select District</span><br>
-                <select name="location" id="locationSelect">
-                <option value="" selected disabled>Select Division</option>
-                <option value="new-york">Dhaka</option>
-                <option value="los-angeles">Mohammadpur</option>
-                <option value="chicago">Banani</option>
-                <option value="houston">Ghulshan</option>
-                </select>
-            </div>
+            <h5>Filters <a href="{{ route('clear.filter') }}" style="float:right; color:blue; text-decoration:none; font-size: 16px;">Clear All</a></h5>
+            <form action="{{ route('filter.location') }}" method="post">
+                @csrf
+                <div class="quicktech-cate-checkbox">
+                    <span class="filter-title">Division</span><br>
+                    <select name="division_id" id="locationSelect">
+                        <option value="">Select Division</option>
+                        @foreach ($divisions as $division)
+                        <option value="{{ $division->id }}">{{ $division->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <br>
+                <div class="quicktech-cate-checkbox">
+                    <span class="filter-title">District</span><br>
+                    <select name="district_id" id="locationSelect">
+                        <option></option>
+                    </select>
+                </div>
+                <br>
+                <div class="quicktech-cate-checkbox">
+                    <span class="filter-title">Upazilla/Thana</span><br>
+                    <select name="upazilla_id" id="locationSelect">
+                        <option></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success mt-4">Filter Location</button>
+            </form>
             <br>
-            <div class="quicktech-cate-checkbox">
-                <span class="filter-title">Select Area/Thana</span><br>
-                <select name="location" id="locationSelect">
-                    <option value="" selected disabled>Select Division</option>
-                    <option value="new-york">Dhaka</option>
-                    <option value="los-angeles">Mohammadpur</option>
-                    <option value="chicago">Banani</option>
-                    <option value="houston">Ghulshan</option>
-                </select>
-            </div>
+            <form action="{{ route('filter.room-type') }}" method="post">
+                @csrf
+                <div class="quicktech-cate-checkbox">
+                    <span class="filter-title">Select room sharing type</span><br>
+                    <input type="radio" name="share_type" value="single" checked> Single<br>
+                    <input type="radio" name="share_type" value="double"> Double<br>
+                    <input type="radio" name="share_type" value="triple"> Triple<br>
+                    {{-- <input type="checkbox"> Triple+<br> --}}
+                    <button type="submit" class="btn btn-success mt-4">Filter Room Type</button>
+                </div>
+            </form>
             <br>
-            <div class="quicktech-cate-checkbox">
-                <span class="filter-title">Select room sharing type</span><br>
-                <input type="checkbox"> Single<br>
-                <input type="checkbox"> Double<br>
-                <input type="checkbox"> Triple<br>
-                <input type="checkbox" checked> Triple+<br>
-            </div>
-            <br>
-            <div class="quicktech-cate-checkbox">
-                <span class="filter-title">Select your gender</span><br>
-                <input type="radio" name="gender"> Male<br>
-                <input type="radio" name="gender"> Female<br>
-                <input type="radio" name="gender"> Any<br>
-            </div>
-            <br>
-            <div class="quicktech-cate-checkbox">
-                <span class="filter-title">Type of residents</span><br>
-                <input type="checkbox"> Working professional<br>
-                <input type="checkbox"> Students<br>
-            </div>
+            <form action="{{ route('filter.resident') }}" method="post">
+                @csrf
+                <div class="quicktech-cate-checkbox">
+                    <span class="filter-title">Select your gender</span><br>
+                    <input type="radio" name="gender" value="Male">Male<br>
+                    <input type="radio" name="gender" value="Female">Female<br>
+                    <input type="radio" name="gender" value="Any" checked>Any<br>
+                </div>
+                <br>
+                <div class="quicktech-cate-checkbox">
+                    <span class="filter-title">Type of residents</span><br>
+                    <input type="radio" name="resident_type" value="Working professional" checked>Working professional<br>
+                    <input type="radio" name="resident_type" value="Students">Students<br>
+                </div>
+                <button type="submit" class="btn btn-success mt-3">Filter</button>
+            </form>
             <br>
             {{-- <div class="price-range">
                 <span class="filter-title">Select your budget</span>

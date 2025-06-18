@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\{Route, Auth};
 // use Illuminate\Http\Request;
 
 use App\Http\Controllers\Frontend\{AuthController, InvitationController, UserController, MessageController};
-use App\Http\Controllers\Frontend\{FrontendController, SubscriptionController};
+use App\Http\Controllers\Frontend\{FrontendController, SubscriptionController, WishlistController};
 use App\Http\Controllers\Backend\{PropertyCategoryController, PropertyController, MultiImageController, PackageController};
 
 /*
@@ -19,6 +19,8 @@ use App\Http\Controllers\Backend\{PropertyCategoryController, PropertyController
 |
 */
 Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('/clear/filter', [FrontendController::class, 'ClearFilter'])->name('clear.filter');
+Route::get('/property/details/{id}', [FrontendController::class, 'PropertyDetails'])->name('property.details');
 Route::post('/search/location', [FrontendController::class, 'SearchLocation'])->name('search.location');
 Route::post('/filter/location', [FrontendController::class, 'FilterLocation'])->name('filter.location');
 Route::post('/filter/room-type', [FrontendController::class, 'FilterRoomType'])->name('filter.room-type');
@@ -89,6 +91,12 @@ Route::middleware(['auth','roles:user'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'ProfileUpdate'])->name('profile.update');
     Route::get('/user/logout', [ProfileController::class, 'UserLogout'])->name('user.logout');
+    // wishlist
+    Route::controller(WishlistController::class)->prefix('/user/wishlist')->name('user.wishlist.')
+    ->group(function () {
+        Route::get('/all', 'UserWishlist')->name('index');
+        Route::get('/destroy/{id}', 'UserWishlistDestroy')->name('destroy');
+    });
 });
 
 // Admin Route
@@ -96,8 +104,9 @@ Route::middleware(['auth','roles:admin'])->group(function () {
     Route::get('/admin/dashboard', [UserController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 });
-// AdminController::class, 'AdminDashboard'
+
 Route::prefix('/admin')->as('admin.')->middleware(['auth','roles:admin'])->group(function () {
+    // Category Of Property
     Route::controller(PropertyCategoryController::class)->prefix('/property-category')->name('property-category.')
     ->group(function () {
         Route::get('/all', 'PropertyCategoryAll')->name('index');
@@ -107,6 +116,7 @@ Route::prefix('/admin')->as('admin.')->middleware(['auth','roles:admin'])->group
         Route::put('/update/{id}', 'PropertyCategoryUpdate')->name('update');
         Route::delete('/delete/{id}', 'PropertyCategoryDelete')->name('delete');
     });
+    // Package
     Route::controller(PackageController::class)->prefix('/package')->name('package.')
     ->group(function () {
         Route::get('/all', 'PackageAll')->name('index');
@@ -115,6 +125,20 @@ Route::prefix('/admin')->as('admin.')->middleware(['auth','roles:admin'])->group
         Route::get('/edit/{id}', 'PackageEdit')->name('edit');
         Route::put('/update/{id}', 'PackageUpdate')->name('update');
         Route::delete('/delete/{id}', 'PackageDelete')->name('delete');
+    });
+});
+Route::prefix('/admin')->as('admin.')->middleware(['auth','roles:admin'])->group(function () {
+    // Status Of Property
+    Route::controller(AdminController::class)->prefix('/property-status')->name('property-status.')->group(function () {
+        Route::get('/all', 'PropertyStatusAll')->name('index');
+        Route::get('/active/{id}', 'PropertyStatusActive')->name('active');
+        Route::get('/inactive/{id}', 'PropertyStatusInactive')->name('inactive');
+    });
+    // Package Order
+    Route::controller(AdminController::class)->prefix('/package-order')->name('package-order.')->group(function () {
+        Route::get('/all', 'PackageOrderAll')->name('index');
+        Route::get('/confirm/{id}', 'PackageOrderConfirm')->name('confirm');
+        Route::get('/withdraw/{id}', 'PackageOrderWithdraw')->name('withdraw');
     });
 });
 
@@ -157,6 +181,9 @@ Route::prefix('/manager')->as('manager.')->middleware(['auth','roles:manager'])-
 });
 Route::get('/district/ajax/{division_id}', [PropertyController::class, 'GetDistrict']);
 Route::get('/upazilla/ajax/{district_id}', [PropertyController::class, 'GetUpazilla']);
+
+// Wishlist add route
+Route::post('/add-to-wishList/{property_id}', [WishlistController::class, 'AddToWishList']);
 
 require __DIR__.'/auth.php';
 

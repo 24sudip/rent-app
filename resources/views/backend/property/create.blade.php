@@ -183,9 +183,9 @@
                                             @enderror
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Starting Price</label>
-                                            <input type="number" class="form-control" placeholder="Enter Starting Price" name="starting_price" step="0.01">
-                                            @error('starting_price') 
+                                            <label class="form-label">Google Map Embed Code</label>
+                                            <textarea class="form-control" name="map_embed_code"></textarea>
+                                            @error('map_embed_code')
                                             <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>

@@ -29,7 +29,7 @@ class PropertyController extends Controller
         $package_order = PackageOrder::where('user_id', Auth::id())->first();
         if (!$package_order) {
             $notification = array(
-                'message' => 'Please Subscribe A Package First',
+                'message' => 'Please Subscribe A Free Package First',
                 'alert-type' => 'error'
             );
             return redirect()->route('manager.buy.package')->with($notification);
@@ -75,16 +75,16 @@ class PropertyController extends Controller
             'term_descriptions.*'=>'required',
             'rules.*'=>'required',
             'title' => 'required|string|max:255',
-            'about_property' => 'required|string|max:255',
+            'about_property' => 'required',
             'division_id' => 'required|numeric',
             'district_id' => 'required|numeric',
             'upazilla_id' => 'required|numeric',
             'gender'=>'required',
             'resident_type'=>'required',
             'address'=>'required',
-            'starting_price'=>'required',
+            'map_embed_code'=>'required',
             'owner_name' => 'required|string|max:255',
-            'about_owner' => 'required|string|max:255',
+            'about_owner' => 'required',
             'multi_img' => 'required|array',
             'multi_img.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ],[
@@ -103,7 +103,7 @@ class PropertyController extends Controller
             'gender'=>$request->gender,
             'resident_type'=>$request->resident_type,
             'address'=>$request->address,
-            'starting_price'=>$request->starting_price,
+            'map_embed_code'=>$request->map_embed_code,
             'owner_name' => $request->owner_name,
             'about_owner' => $request->about_owner,
             'user_id' => Auth::id(),
@@ -459,6 +459,10 @@ class PropertyController extends Controller
             'division_id' => 'required|numeric',
             'district_id' => 'required|numeric',
             'upazilla_id' => 'required|numeric',
+            'gender'=>'required',
+            'resident_type'=>'required',
+            'address'=>'required',
+            'map_embed_code'=>'required',
             'owner_name' => 'required|string|max:255',
             'about_owner' => 'required|string|max:255',
         ]);

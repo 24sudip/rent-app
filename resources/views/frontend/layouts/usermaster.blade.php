@@ -29,8 +29,11 @@
                                             <i class="fa fa-handshake-o" aria-hidden="true"></i>Property Category
                                         </a>
                                     </li>
-                                    <li><a href="{{ route('user.chat.list') }}" class="{{ request()->routeIs('user.chat.list') ? 'act' : '' }}"><i class="fa fa-commenting-o" aria-hidden="true"></i>Chat list</a></li>
-                                    <li><a href="{{ route('user.plan') }}" class="{{ request()->routeIs('user.plan') ? 'act' : '' }}"><i class="fa fa-money" aria-hidden="true"></i>Plan</a></li>
+                                    {{-- 'user.chat.list' --}}
+                                    <li><a href="{{ route('admin.property-status.index') }}" class="{{ request()->routeIs('admin.property-status.index') ? 'act' : '' }}"><i class="fa fa-commenting-o" aria-hidden="true"></i>Property List</a></li>
+                                    {{-- 'user.plan' --}}
+                                    <li><a href="{{ route('admin.package-order.index') }}" class="{{ request()->
+                                    routeIs('admin.package-order.index') ? 'act' : '' }}"><i class="fa fa-money" aria-hidden="true"></i>Package Order</a></li>
                                     <li><a href="{{ route('user.setting') }}" class="{{ request()->routeIs('user.setting') ? 'act' : '' }}"><i class="fa fa-cog" aria-hidden="true"></i>Setting</a></li>
                                     <li>
                                         <a href="{{ route('admin.logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a>

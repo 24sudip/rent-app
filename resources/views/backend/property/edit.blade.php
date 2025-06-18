@@ -245,6 +245,44 @@
                                         </div>
                                         <br>
                                         <div class="mb-3">
+                                            <label class="form-label">Residents Gender*</label>
+                                            <select class="form-control" name="gender">
+                                                <option value="">Select</option>
+                                                <option value="Male" {{ $property->gender == 'Male' ? 'selected' : '' }}>Male</option>
+                                                <option value="Female" {{ $property->gender == 'Female' ? 'selected' : '' }}>Female</option>
+                                                <option value="Any" {{ $property->gender == 'Any' ? 'selected' : '' }}>Any</option>
+                                            </select>
+                                            @error('gender')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Residents Type*</label>
+                                            <select class="form-control" name="resident_type">
+                                                <option value="">Select</option>
+                                                <option value="Working professional" {{ $property->resident_type == 'Working professional' ? 'selected' : '' }}>Working professional</option>
+                                                <option value="Students" {{ $property->resident_type == 'Students' ? 'selected' : '' }}>Students</option>
+                                            </select>
+                                            @error('resident_type')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Address*</label>
+                                            <input type="text" class="form-control" placeholder="Enter Address" name="address"
+                                            value="{{ $property->address }}">
+                                            @error('address')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Google Map Embed Code</label>
+                                            <textarea class="form-control" name="map_embed_code">{{ $property->map_embed_code }}</textarea>
+                                            @error('map_embed_code')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
                                             <label class="form-label">Property Owner Name*</label>
                                             <input type="text" class="form-control" placeholder="Enter property owner name" name="owner_name" value="{{ $property->owner_name }}">
                                             @error('owner_name')
