@@ -32,13 +32,13 @@ class WishlistController extends Controller
         ]);
     }
 
-    public function UserWishlistDestroy($id) {
+    public function UserWishlistDestroy(Request $request, $id) {
         $wishlist = Wishlist::where('user_id', Auth::id())->where('id', $id)->first();
         $wishlist->delete();
         $notification = array(
             'message' => 'Wishlist Deleted Successfully',
             'alert-type' => 'success'
         );
-        return redirect()->back()->with($notification);
+        return redirect()->route('user.wishlist.index')->with($notification);
     }
 }

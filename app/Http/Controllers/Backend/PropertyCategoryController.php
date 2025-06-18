@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\PropertyCategory;
+use App\Models\{PropertyCategory, Property};
 use App\Http\Traits\NormalImageUpload;
 use App\Helpers\Toastr;
 
@@ -61,7 +61,12 @@ class PropertyCategoryController extends Controller
 
     public function PropertyCategoryDelete($id) {
         $property_category = PropertyCategory::findOrFail($id);
-        $this->deleteImage($property_category->category_photo);
-        $property_category->delete();
+        $hasItem = Property::where('property_category_id', $property_category->id)->count();
+        if ($hasItem == 0) {
+            $this->deleteImage($property_category->category_photo);
+            $property_category->delete();
+            return true;
+        }
+        return response(['status'=>'error']);
     }
 }

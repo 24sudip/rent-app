@@ -13,19 +13,22 @@
                             <div class="db-nav-list">
                                 <ul>
                                     <li>
-                                        <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('user.dashboard') ? 'act' : '' }}">
+                                        <a href="{{ route('admin.dashboard') }}"
+                                            class="{{ request()->routeIs('admin.dashboard') ? 'act' : '' }}">
                                             <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
                                         </a>
                                     </li>
                                     <li>
                                         {{-- 'user.profile' --}}
-                                        <a href="{{ route('admin.package.index') }}" class="{{ request()->routeIs('user.profile') ? 'act' : '' }}">
+                                        <a href="{{ route('admin.package.index') }}"
+                                            class="{{ request()->routeIs('admin.package.index') ? 'act' : '' }}">
                                             <i class="fa fa-male" aria-hidden="true"></i> Package
                                         </a>
                                     </li>
                                     <li>
                                         {{-- 'user.invitations' --}}
-                                        <a href="{{ route('admin.property-category.index') }}" class="{{ request()->routeIs('admin.property-category.index') ? 'act' : '' }}">
+                                        <a href="{{ route('admin.property-category.index') }}"
+                                            class="{{ request()->routeIs('admin.property-category.index') ? 'act' : '' }}">
                                             <i class="fa fa-handshake-o" aria-hidden="true"></i>Property Category
                                         </a>
                                     </li>
@@ -34,7 +37,14 @@
                                     {{-- 'user.plan' --}}
                                     <li><a href="{{ route('admin.package-order.index') }}" class="{{ request()->
                                     routeIs('admin.package-order.index') ? 'act' : '' }}"><i class="fa fa-money" aria-hidden="true"></i>Package Order</a></li>
-                                    <li><a href="{{ route('user.setting') }}" class="{{ request()->routeIs('user.setting') ? 'act' : '' }}"><i class="fa fa-cog" aria-hidden="true"></i>Setting</a></li>
+                                    {{-- 'user.setting' --}}
+                                    <li><a href="{{ route('admin.payment-package.list') }}" class="{{ request()->routeIs('admin.payment-package.list') ? 'act' : '' }}"><i class="fa fa-cog" aria-hidden="true"></i>Package Payment</a></li>
+                                    <li>
+                                        <a href="{{ route('admin.reserve-property.list') }}"
+                                            class="{{ request()->routeIs('admin.reserve-property.list') ? 'act' : '' }}">
+                                            <i class="fa fa-tachometer" aria-hidden="true"></i> Reserved Property 
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('admin.logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a>
                                     </li>

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\User;
+use App\Models\{User, Reserve};
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\{Redirect, File};
 use Illuminate\View\View;
-
+use Illuminate\Support\Carbon;
 
 class ProfileController extends Controller
 {
@@ -73,7 +73,24 @@ class ProfileController extends Controller
 
     //     return Redirect::route('profile.edit')->with('status', 'profile-updated');
     // }
-
+    public function UserReserveStore(Request $request) {
+        // dd($request->all());
+        $request->validate([
+            'fullName'=>'required|string|max:255',
+            'email'=>'required|email',
+            'phone'=>'required',
+            'sharingType'=>'required'
+        ]);
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+        $data['date'] = Carbon::createFromFormat('Y-m-d', $request->date)->format("Y-m-d H:i:s");
+        Reserve::create($data);
+        $notification = array(
+            'message' => 'Property Reserved Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
     /**
      * Delete the user's account.
      */
@@ -94,4 +111,9 @@ class ProfileController extends Controller
 
     //     return Redirect::to('/');
     // }
+    public function UserReserveAll() {
+        return view('rent-frontend.user-dashboard.reserve', [
+            'reserves' => Reserve::with('property')->where('user_id', Auth::id())->latest()->get()
+        ]);
+    }
 }

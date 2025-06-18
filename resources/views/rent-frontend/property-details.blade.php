@@ -190,9 +190,15 @@
                                     <div class="quicktech-single-bottom">
                                         <h6>{{ $room->tenant }} Tenants staying</h6>
                                         <!-- Button to trigger modal -->
+                                        @auth
                                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reserveModal">
                                             Reserve Now
                                         </button>
+                                        @else
+                                        <a class="btn btn-primary" href="{{ route('login') }}">
+                                            Login To Reserve
+                                        </a>
+                                        @endauth
                                     </div>
                                 </div>
                             </div>
@@ -236,40 +242,45 @@
             </div>
             <div class="modal-body">
                 <p>Please fill out the details to proceed with your reservation.</p>
-                <form>
-                  <div class="mb-3">
-                      <label for="fullName" class="form-label">Full Name</label>
-                      <input type="text" class="form-control" id="fullName" placeholder="Enter your name">
-                  </div>
-                  <div class="mb-3">
-                      <label for="email" class="form-label">Email Address</label>
-                      <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                  </div>
-                  <div class="mb-3">
-                      <label for="phone" class="form-label">Phone Number</label>
-                      <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
-                  </div>
-                  <div class="mb-3">
-                      <label for="sharingType" class="form-label">Sharing Type</label>
-                      <select class="form-control" id="sharingType">
-                          <option>Single Sharing</option>
-                          <option>Double Sharing</option>
-                      </select>
-                  </div>
+                <form method="POST" action="{{ route('user.reserve.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="property_id" value="{{ $property->id }}">
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="Enter your name" name="fullName" value="{{ auth()->user()->name }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email" value="{{ auth()->user()->email }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" name="phone" value="{{ auth()->user()->phone }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sharingType" class="form-label">Sharing Type</label>
+                        <select class="form-control" id="sharingType" name="sharingType">
+                            <option>Select</option>
+                            @foreach ($property->rooms as $room)
+                            <option>{{ $room->share_type }} Sharing</option>
+                            @endforeach
+                        </select>
+                    </div>
                   <div class="mb-3">
                       <label for="date" class="form-label">Select Date</label>
-                      <input type="date" class="form-control" id="date">
+                      <input type="date" class="form-control" id="date" name="date">
                   </div>
                   <div class="mb-3">
                       <label for="time" class="form-label">Select Time</label>
-                      <input type="time" class="form-control" id="time">
+                      <input type="time" class="form-control" id="time" name="time">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Confirm Reservation</button>
                   </div>
               </form>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Confirm Reservation</button>
+              
             </div>
         </div>
     </div>

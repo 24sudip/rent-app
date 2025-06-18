@@ -10,12 +10,13 @@
             <div class="col-lg-3 col-md-3 d-none d-lg-block d-md-none">
                 <div class="filter-container">
                     <h5>
-                        <a href="{{ route('clear.filter') }}" style="float:right; color:blue; text-decoration:none; font-size: 16px;">
+                        <a href="{{ route('clear.filter', $property_category_id) }}" style="float:right; color:blue; text-decoration:none; font-size: 16px;">
                             Clear All
                         </a>
                     </h5>
                     <form action="{{ route('filter.location') }}" method="post">
                         @csrf
+                        <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                         <div class="quicktech-cate-checkbox">
                             <span class="filter-title">Division</span><br>
                             <select name="division_id" id="locationSelect">
@@ -44,6 +45,7 @@
                     <br>
                     <form action="{{ route('filter.room-type') }}" method="post">
                         @csrf
+                        <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                         <div class="quicktech-cate-checkbox">
                             <span class="filter-title">Select room sharing type</span><br>
                             <input type="radio" name="share_type" value="single" checked> Single<br>
@@ -56,6 +58,7 @@
                     <br>
                     <form action="{{ route('filter.resident') }}" method="post">
                         @csrf
+                        <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                         <div class="quicktech-cate-checkbox">
                             <span class="filter-title">Select your gender</span><br>
                             <input type="radio" name="gender" value="Male">Male<br>
@@ -174,9 +177,10 @@
     </div>
     <div class="offcanvas-body">
         <div class="filter-container">
-            <h5>Filters <a href="{{ route('clear.filter') }}" style="float:right; color:blue; text-decoration:none; font-size: 16px;">Clear All</a></h5>
+            <h5>Filters <a href="{{ route('clear.filter', $property_category_id) }}" style="float:right; color:blue; text-decoration:none; font-size: 16px;">Clear All</a></h5>
             <form action="{{ route('filter.location') }}" method="post">
                 @csrf
+                <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                 <div class="quicktech-cate-checkbox">
                     <span class="filter-title">Division</span><br>
                     <select name="division_id" id="locationSelect">
@@ -205,6 +209,7 @@
             <br>
             <form action="{{ route('filter.room-type') }}" method="post">
                 @csrf
+                <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                 <div class="quicktech-cate-checkbox">
                     <span class="filter-title">Select room sharing type</span><br>
                     <input type="radio" name="share_type" value="single" checked> Single<br>
@@ -217,6 +222,7 @@
             <br>
             <form action="{{ route('filter.resident') }}" method="post">
                 @csrf
+                <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                 <div class="quicktech-cate-checkbox">
                     <span class="filter-title">Select your gender</span><br>
                     <input type="radio" name="gender" value="Male">Male<br>

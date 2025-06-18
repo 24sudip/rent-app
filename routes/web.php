@@ -3,7 +3,7 @@
 use App\Http\Controllers\{ProfileController, AdminController, ManagerController};
 use Illuminate\Support\Facades\{Route, Auth};
 // use Illuminate\Http\Request;
-
+use App\Models\{Reserve, Wishlist};
 use App\Http\Controllers\Frontend\{AuthController, InvitationController, UserController, MessageController};
 use App\Http\Controllers\Frontend\{FrontendController, SubscriptionController, WishlistController};
 use App\Http\Controllers\Backend\{PropertyCategoryController, PropertyController, MultiImageController, PackageController};
@@ -19,7 +19,7 @@ use App\Http\Controllers\Backend\{PropertyCategoryController, PropertyController
 |
 */
 Route::get('/', [FrontendController::class, 'index'])->name('index');
-Route::get('/clear/filter', [FrontendController::class, 'ClearFilter'])->name('clear.filter');
+Route::get('/clear/filter/{property_category_id}', [FrontendController::class, 'ClearFilter'])->name('clear.filter');
 Route::get('/property/details/{id}', [FrontendController::class, 'PropertyDetails'])->name('property.details');
 Route::post('/search/location', [FrontendController::class, 'SearchLocation'])->name('search.location');
 Route::post('/filter/location', [FrontendController::class, 'FilterLocation'])->name('filter.location');
@@ -82,7 +82,10 @@ Route::group(['prefix'=>'user', 'middleware' => ['auth', 'ensure.profile.updated
 
 // User Route
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', [
+        'reserve_count' => Reserve::where('user_id', Auth::id())->count(),
+        'wishlist_ount' => Wishlist::where('user_id', Auth::id())->count()
+    ]);
 })->middleware(['auth','roles:user','verified'])->name('dashboard');
 
 Route::middleware(['auth','roles:user'])->group(function () {
@@ -95,7 +98,13 @@ Route::middleware(['auth','roles:user'])->group(function () {
     Route::controller(WishlistController::class)->prefix('/user/wishlist')->name('user.wishlist.')
     ->group(function () {
         Route::get('/all', 'UserWishlist')->name('index');
-        Route::get('/destroy/{id}', 'UserWishlistDestroy')->name('destroy');
+        Route::post('/destroy/{id}', 'UserWishlistDestroy')->name('destroy');
+    });
+    // reserve
+    Route::controller(ProfileController::class)->prefix('/user/reserve')->name('user.reserve.')
+    ->group(function () {
+        Route::post('/store', 'UserReserveStore')->name('store');
+        Route::get('/all', 'UserReserveAll')->name('index');
     });
 });
 
@@ -140,6 +149,10 @@ Route::prefix('/admin')->as('admin.')->middleware(['auth','roles:admin'])->group
         Route::get('/confirm/{id}', 'PackageOrderConfirm')->name('confirm');
         Route::get('/withdraw/{id}', 'PackageOrderWithdraw')->name('withdraw');
     });
+    // Package Payment
+    Route::get('/payment-package/list', [AdminController::class, 'PaymentPackageList'])->name('payment-package.list');
+    // Reserve Property
+    Route::get('/reserve-property/list', [AdminController::class, 'ReservePropertyList'])->name('reserve-property.list');
 });
 
 Route::middleware(['auth','roles:manager'])->group(function () {

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Property, PackageOrder};
+use App\Models\{Property, PackageOrder, PaymentPackage, Reserve};
 // use Illuminate\Support\Facades\Auth;
 use App\Helpers\Toastr;
 
@@ -51,5 +51,17 @@ class AdminController extends Controller
         ]);
         Toastr::success('Package Order Withdrawn Successfully.');
         return redirect()->back();
+    }
+
+    public function PaymentPackageList() {
+        return view('admin.payment-package.index', [
+            'payment_packages' => PaymentPackage::with('package')->latest()->get()
+        ]);
+    }
+
+    public function ReservePropertyList() {
+        return view('admin.reserve.index', [
+            'reserves' => Reserve::with('property')->latest()->get()
+        ]);
     }
 }

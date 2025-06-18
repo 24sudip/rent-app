@@ -10,12 +10,13 @@
             <div class="col-lg-3 col-md-3 d-none d-lg-block d-md-none">
                 <div class="filter-container">
                     <h5>
-                        <a href="{{ route('clear.filter') }}" style="float:right; color:blue; text-decoration:none; font-size: 16px;">
+                        <a href="{{ route('clear.filter', $property_category_id) }}" style="float:right; color:blue; text-decoration:none; font-size: 16px;">
                             Clear All
                         </a>
                     </h5>
                     <form action="{{ route('filter.location') }}" method="post">
                         @csrf
+                        <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                         <div class="quicktech-cate-checkbox">
                             <span class="filter-title">Division</span><br>
                             <select name="division_id" id="locationSelect">
@@ -44,6 +45,7 @@
                     <br>
                     <form action="{{ route('filter.room-type') }}" method="post">
                         @csrf
+                        <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                         <div class="quicktech-cate-checkbox">
                             <span class="filter-title">Select room sharing type</span><br>
                             <input type="radio" name="share_type" value="single" checked> Single<br>
@@ -56,6 +58,7 @@
                     <br>
                     <form action="{{ route('filter.resident') }}" method="post">
                         @csrf
+                        <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                         <div class="quicktech-cate-checkbox">
                             <span class="filter-title">Select your gender</span><br>
                             <input type="radio" name="gender" value="Male">Male<br>
@@ -99,7 +102,7 @@
                 <div class="row mt-4">
                     <div class="col-lg-12">
                     @foreach ($rooms as $room)
-                        @if ($room->property->status == 1)
+                        @if ($room->property->property_category_id == $property_category_id && $room->property->status == 1)
                         <div class="quicktech-product-main-inner">
                             <div class="quiktech-categor-p-img">
                                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -123,7 +126,7 @@
                             <div class="quicktech-categories-p-details">
                                 <div class="d-flex justify-content-between quicktech-wishlist">
                                     <h3>{{ $room->property->title }}</h3>
-                                    <a title="Add To Wishlist" class="action-btn" id="{{ $property->id }}" onclick="addToWishlist(this.id)" style="cursor: pointer;color:black;">
+                                    <a title="Add To Wishlist" class="action-btn" id="{{ $room->property_id }}" onclick="addToWishlist(this.id)" style="cursor: pointer;color:black;">
                                         <i class="fa-solid fa-heart"></i>
                                     </a>
                                 </div>
@@ -176,9 +179,10 @@
     </div>
     <div class="offcanvas-body">
         <div class="filter-container">
-            <h5>Filters <a href="{{ route('clear.filter') }}" style="float:right; color:blue; text-decoration:none; font-size: 16px;">Clear All</a></h5>
+            <h5>Filters <a href="{{ route('clear.filter', $property_category_id) }}" style="float:right; color:blue; text-decoration:none; font-size: 16px;">Clear All</a></h5>
             <form action="{{ route('filter.location') }}" method="post">
                 @csrf
+                <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                 <div class="quicktech-cate-checkbox">
                     <span class="filter-title">Division</span><br>
                     <select name="division_id" id="locationSelect">
@@ -207,6 +211,7 @@
             <br>
             <form action="{{ route('filter.room-type') }}" method="post">
                 @csrf
+                <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                 <div class="quicktech-cate-checkbox">
                     <span class="filter-title">Select room sharing type</span><br>
                     <input type="radio" name="share_type" value="single" checked> Single<br>
@@ -219,6 +224,7 @@
             <br>
             <form action="{{ route('filter.resident') }}" method="post">
                 @csrf
+                <input type="hidden" name="property_category_id" value="{{ $property_category_id }}">
                 <div class="quicktech-cate-checkbox">
                     <span class="filter-title">Select your gender</span><br>
                     <input type="radio" name="gender" value="Male">Male<br>

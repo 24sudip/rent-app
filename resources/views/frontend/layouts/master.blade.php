@@ -297,12 +297,20 @@
                             type: "DELETE",
                             url: deleteUrl,
                             success: function (data) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success"
-                                });
-                                window.location.reload();
+                                if (data.status == 'error') {
+                                    Swal.fire({
+                                        title: "You can not Delete!",
+                                        text: "This category contain items so cannot be deleted.",
+                                        icon: "error"
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    });
+                                    window.location.reload();
+                                }
                             },
                             error: function (xhr, status, error) {
                                 console.log(error);

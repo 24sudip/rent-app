@@ -57,12 +57,15 @@
 
                             <div class="quikctech-price d-flex justify-content-between align-items-center">
                                 <h6>
-                                    <a href="{{ route('user.wishlist.destroy', $wishlist->id) }}"
-                                        class="btn btn-danger btn-sm" id="delete">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    <form action="{{ route('user.wishlist.destroy', $wishlist->id) }}" method="post">
+                                        @csrf
+                                        <button type="submit"
+                                            class="btn btn-danger btn-sm" onclick="return(confirm('Are you sure you want to delete this item?'))">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </h6>
-                                <a href="propertydetails.html">View</a>
+                                <a href="{{ route('property.details', $wishlist->property_id) }}">View</a>
                             </div>
 
                         </div>

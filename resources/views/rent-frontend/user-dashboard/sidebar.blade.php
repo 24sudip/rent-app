@@ -8,10 +8,10 @@
         <img src="{{ asset('rent-frontend/images') }}/dashboard.png" alt="" /> DASHBOARD
     </a>
     <a
-    {{-- @if (Request::routeIs('dashboard'))
+    @if (Request::routeIs('user.reserve.index'))
     style="background-color:#ffe000; color:black;"
-    @endif --}}
-    href="bookinglist.html">
+    @endif
+    href="{{ route('user.reserve.index') }}">
         <img src="{{ asset('rent-frontend/images') }}/deadline.png" alt="" /> BOOKING LIST
     </a>
     <a

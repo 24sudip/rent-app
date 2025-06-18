@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PaymentPackage extends Model
+class Reserve extends Model
 {
     use HasFactory;
     protected $guarded = [];
     /**
-     * Get the package that owns the PaymentPackage
+     * Get the property that owns the Reserve
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function package()
+    public function property()
     {
-        return $this->belongsTo(Package::class, 'package_id', 'id');
+        return $this->belongsTo(Property::class, 'property_id', 'id');
     }
 }
