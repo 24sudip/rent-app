@@ -42,7 +42,19 @@
                                     <li>
                                         <a href="{{ route('admin.reserve-property.list') }}"
                                             class="{{ request()->routeIs('admin.reserve-property.list') ? 'act' : '' }}">
-                                            <i class="fa fa-tachometer" aria-hidden="true"></i> Reserved Property 
+                                            <i class="fa fa-tachometer" aria-hidden="true"></i> Reserved Property
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.district.index') }}"
+                                            class="{{ request()->routeIs('admin.district.index') ? 'act' : '' }}">
+                                            <i class="fa fa-male" aria-hidden="true"></i> Districts
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.upazila.index') }}"
+                                            class="{{ request()->routeIs('admin.upazila.index') ? 'act' : '' }}">
+                                            <i class="fa fa-handshake-o" aria-hidden="true"></i>Upazila
                                         </a>
                                     </li>
                                     <li>

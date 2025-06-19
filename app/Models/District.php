@@ -9,5 +9,14 @@ class District extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    /**
+     * Get the division te District
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function division()
+    {
+        return $this->belongsTo(Division::class, 'division_id', 'id');
+    }
 }
 

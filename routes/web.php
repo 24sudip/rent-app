@@ -7,7 +7,7 @@ use App\Models\{Reserve, Wishlist};
 use App\Http\Controllers\Frontend\{AuthController, InvitationController, UserController, MessageController};
 use App\Http\Controllers\Frontend\{FrontendController, SubscriptionController, WishlistController};
 use App\Http\Controllers\Backend\{PropertyCategoryController, PropertyController, MultiImageController, PackageController};
-
+use App\Http\Controllers\Backend\{DistrictController, UpazilaController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -135,7 +135,23 @@ Route::prefix('/admin')->as('admin.')->middleware(['auth','roles:admin'])->group
         Route::put('/update/{id}', 'PackageUpdate')->name('update');
         Route::delete('/delete/{id}', 'PackageDelete')->name('delete');
     });
+    // District
+    Route::controller(DistrictController::class)->prefix('/district')->name('district.')
+    ->group(function () {
+        Route::get('/all', 'DistrictAll')->name('index');
+    });
+    // Upzilla
+    Route::controller(UpazilaController::class)->prefix('/upazila')->name('upazila.')
+    ->group(function () {
+        Route::get('/all', 'UpazilaAll')->name('index');
+        Route::get('/create', 'UpazilaCreate')->name('create');
+        // Route::post('/store', 'PackageStore')->name('store');
+        // Route::get('/edit/{id}', 'PackageEdit')->name('edit');
+        // Route::put('/update/{id}', 'PackageUpdate')->name('update');
+        // Route::delete('/delete/{id}', 'PackageDelete')->name('delete');
+    });
 });
+
 Route::prefix('/admin')->as('admin.')->middleware(['auth','roles:admin'])->group(function () {
     // Status Of Property
     Route::controller(AdminController::class)->prefix('/property-status')->name('property-status.')->group(function () {
