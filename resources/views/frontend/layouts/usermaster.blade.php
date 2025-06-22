@@ -58,6 +58,18 @@
                                         </a>
                                     </li>
                                     <li>
+                                        <a href="{{ route('admin.what-you-setting.edit') }}"
+                                        class="{{ request()->routeIs('admin.what-you-setting.edit') ? 'act' : '' }}">
+                                            <i class="fa fa-commenting-o" aria-hidden="true"></i>What You Setting
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.what-you-item.index') }}"
+                                            class="{{ request()->routeIs('admin.what-you-item.*') ? 'act' : '' }}">
+                                            <i class="fa fa-money" aria-hidden="true"></i>What You Items
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('admin.logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a>
                                     </li>
                                 </ul>
@@ -139,5 +151,5 @@
         </script>
         @stack('user-script')
     @endpush
-
+    
 @endsection

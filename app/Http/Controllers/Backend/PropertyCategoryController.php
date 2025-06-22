@@ -26,7 +26,7 @@ class PropertyCategoryController extends Controller
         // dd($request->all());
         $request->validate([
             'name' => 'required|string|max:255',
-            'category_photo' => 'required|image|mimes:jpeg,png,jpg,svg,webp,gif|max:2048',
+            'category_photo' => 'required|image|mimes:jpeg,png,jpg,svg,webp,gif',
         ]);
         $data = $request->all();
         $data['category_photo'] = $this->uploadImage($request, 'category_photo', 'category_photo-', 'category-photo');
@@ -44,7 +44,7 @@ class PropertyCategoryController extends Controller
     public function PropertyCategoryUpdate(Request $request, $id) {
         $request->validate([
             'name' => 'required|string|max:255',
-            'category_photo' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp,gif|max:2048',
+            'category_photo' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp,gif',
         ]);
         $property_category = PropertyCategory::findOrFail($id);
         $data = $request->all();

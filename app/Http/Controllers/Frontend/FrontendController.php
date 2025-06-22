@@ -60,7 +60,7 @@ class FrontendController extends Controller
             'district_id'=>'required',
             'upazilla_id'=>'required',
         ]);
-        $properties = Property::where(['division_id'=>$request->division_id,'district_id'=>$request->district_id,
+        $properties = Property::with('multi_images','rooms')->where(['division_id'=>$request->division_id,'district_id'=>$request->district_id,
         'upazilla_id'=>$request->upazilla_id,'status'=>1,'property_category_id'=>$request->property_category_id])->get();
         $divisions = Division::get(['id','name']);
         $property_category_id = $request->property_category_id;
@@ -71,7 +71,7 @@ class FrontendController extends Controller
         $request->validate([
             'share_type'=>'required'
         ]);
-        $rooms = Room::where('share_type', $request->share_type)->get();
+        $rooms = Room::with('property')->where('share_type', $request->share_type)->get();
         $divisions = Division::get(['id','name']);
         $property_category_id = $request->property_category_id;
         return view('rent-frontend.filter-room-type', compact('rooms','divisions','property_category_id'));
@@ -83,14 +83,14 @@ class FrontendController extends Controller
             'resident_type'=>'required',
         ]);
         $divisions = Division::get(['id','name']);
-        $properties = Property::where(['gender'=>$request->gender,'resident_type'=>$request->resident_type,'status'=>1,'property_category_id'=>$request->property_category_id])->get();
+        $properties = Property::with('multi_images','rooms')->where(['gender'=>$request->gender,'resident_type'=>$request->resident_type,'status'=>1,'property_category_id'=>$request->property_category_id])->get();
         $property_category_id = $request->property_category_id;
         return view('rent-frontend.filter-property', compact('properties','divisions','property_category_id'));
     }
 
     public function ClearFilter($property_category_id) {
         $divisions = Division::get(['id','name']);
-        $properties = Property::with('rooms')->where(['status'=>1,'property_category_id'=>$property_category_id])->latest()->limit(2)->get();
+        $properties = Property::with('rooms','multi_images')->where(['status'=>1,'property_category_id'=>$property_category_id])->latest()->limit(2)->get();
         return view('rent-frontend.filter-property', compact('properties','divisions','property_category_id'));
     }
 

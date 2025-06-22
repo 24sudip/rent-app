@@ -41,9 +41,16 @@ class PropertyController extends Controller
             return redirect()->route('manager.buy.package')->with($notification);
         }
         $total_property = Property::where('user_id', Auth::id())->count();
-        if ($total_property == $package_order->package->maximum_post) {
+        if ($total_property == $package_order->total_post) {
             $notification = array(
                 'message' => 'You Have Already Reached Maximum Limit',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('manager.buy.package')->with($notification);
+        }
+        if ($package_order->status == 0) {
+            $notification = array(
+                'message' => 'Current Package Has Not Been Confirmed By Admin Yet',
                 'alert-type' => 'error'
             );
             return redirect()->route('manager.buy.package')->with($notification);

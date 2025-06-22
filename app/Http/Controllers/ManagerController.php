@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Package, PaymentPackage};
-use App\Models\PackageOrder;
+use App\Models\{PackageOrder, Property};
 use App\Models\PropertyCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,7 +17,10 @@ use Carbon\Carbon;
 class ManagerController extends Controller
 {
     public function ManagerDashboard() {
-        return view('manager.manager-dashboard');
+        return view('manager.manager-dashboard', [
+            'active_property'=>Property::where(['user_id'=>Auth::id(),'status'=>1])->count(),
+            'pending_property'=>Property::where(['user_id'=>Auth::id(),'status'=>0])->count(),
+        ]);
     }
 
     public function ManagerLogin() {
@@ -123,6 +126,7 @@ class ManagerController extends Controller
                 PackageOrder::create([
                     'user_id'=>Auth::id(),
                     'package_id'=>$package->id,
+                    'total_post'=>$package->maximum_post,
                     'expired_at'=>$expired_at,
                     'invoice_no'=>'RNT'. mt_rand('10000000','99999999'),
                     'order_date'=>now()->format('d F Y'),
@@ -153,6 +157,7 @@ class ManagerController extends Controller
                     'payment_id'=>$payment_package->id,
                     'user_id'=>Auth::id(),
                     'package_id'=>$package->id,
+                    'total_post'=>$package->maximum_post,
                     'expired_at'=>$expired_at,
                     'invoice_no'=>$payment_package->invoice_no,
                     'order_date'=>now()->format('d F Y'),
@@ -193,10 +198,12 @@ class ManagerController extends Controller
                 'order_year'=>now()->format('Y'),
             ]);
             $expired_at = Carbon::now()->addDays($package->duration);
+            $total_post = $package_order->total_post;
             $package_order->update([
                 'payment_id'=>$payment_package->id,
                 'user_id'=>Auth::id(),
                 'package_id'=>$package->id,
+                'total_post'=>$total_post + $package->maximum_post,
                 'expired_at'=>$expired_at,
                 'invoice_no'=>$payment_package->invoice_no,
                 'order_date'=>now()->format('d F Y'),

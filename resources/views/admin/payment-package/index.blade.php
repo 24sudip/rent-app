@@ -15,9 +15,10 @@
         <thead class="quicktech-postlist">
             <tr>
                 <th class="quicktech-postlist-th">SL</th>
-                <th class="quicktech-postlist-th">Manager Name</th>
+                <th class="quicktech-postlist-th">Manager</th>
                 <th class="quicktech-postlist-th">Amount</th>
                 <th class="quicktech-postlist-th">Package</th>
+                <th class="quicktech-postlist-th">Status</th>
                 <th class="quicktech-postlist-th">Invoice</th>
                 <th class="quicktech-postlist-th">Order Date</th>
             </tr>
@@ -32,6 +33,9 @@
                 </td>
                 <td class="quicktech-postlist-td">
                     {{ $payment_package->package->name }}
+                </td>
+                <td class="quicktech-postlist-td">
+                    {{ $payment_package->status }}
                 </td>
                 <td class="quicktech-postlist-td">{{ $payment_package->invoice_no }}</td>
                 <td class="quicktech-postlist-td">

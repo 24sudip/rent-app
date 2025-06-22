@@ -35,12 +35,12 @@
                 </td>
                 <td class="quicktech-postlist-td">{{ $upazila->url }}</td>
                 <td class="quicktech-postlist-td" width="20%">
-                    <a href="{{ route('admin.property-status.active', $upazila->id) }}" class="btn btn-success btn-sm">
+                    <a href="{{ route('admin.upazila.edit', $upazila->id) }}" class="btn btn-success btn-sm">
                         Edit
                     </a>
-                    <a href="{{ route('admin.property-status.inactive', $upazila->id) }}" class="btn btn-danger btn-sm">
+                    {{-- <a href="{{ route('admin.property-status.inactive', $upazila->id) }}" class="btn btn-danger btn-sm">
                         Delete
-                    </a>
+                    </a> --}}
                 </td>
             </tr>
             @endforeach

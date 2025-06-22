@@ -41,6 +41,13 @@ class AdminController extends Controller
         PackageOrder::find($id)->update([
             'status'=>1
         ]);
+        $package_order = PackageOrder::find($id);
+        $payment_package = PaymentPackage::where('id', $package_order->payment_id)->first();
+        if ($payment_package) {
+            $payment_package->update([
+                'status' => 'Paid'
+            ]);
+        }
         Toastr::success('Package Order Confirmed Successfully.');
         return redirect()->back();
     }
@@ -49,6 +56,13 @@ class AdminController extends Controller
         PackageOrder::find($id)->update([
             'status'=>0
         ]);
+        $package_order = PackageOrder::find($id);
+        $payment_package = PaymentPackage::where('id', $package_order->payment_id)->first();
+        if ($payment_package) {
+            $payment_package->update([
+                'status' => 'Unpaid'
+            ]);
+        }
         Toastr::success('Package Order Withdrawn Successfully.');
         return redirect()->back();
     }

@@ -7,7 +7,7 @@ use App\Models\{Reserve, Wishlist};
 use App\Http\Controllers\Frontend\{AuthController, InvitationController, UserController, MessageController};
 use App\Http\Controllers\Frontend\{FrontendController, SubscriptionController, WishlistController};
 use App\Http\Controllers\Backend\{PropertyCategoryController, PropertyController, MultiImageController, PackageController};
-use App\Http\Controllers\Backend\{DistrictController, UpazilaController};
+use App\Http\Controllers\Backend\{DistrictController, UpazilaController, SettingController, WhatYouController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -135,6 +135,16 @@ Route::prefix('/admin')->as('admin.')->middleware(['auth','roles:admin'])->group
         Route::put('/update/{id}', 'PackageUpdate')->name('update');
         Route::delete('/delete/{id}', 'PackageDelete')->name('delete');
     });
+    // WhatYou Item
+    Route::controller(WhatYouController::class)->prefix('/what-you-item')->name('what-you-item.')
+    ->group(function () {
+        Route::get('/all', 'WhatYouAll')->name('index');
+        Route::get('/create', 'WhatYouCreate')->name('create');
+        Route::post('/store', 'WhatYouStore')->name('store');
+        Route::get('/edit/{id}', 'WhatYouEdit')->name('edit');
+        Route::put('/update/{id}', 'WhatYouUpdate')->name('update');
+        Route::delete('/delete/{id}', 'WhatYouDelete')->name('delete');
+    });
     // District
     Route::controller(DistrictController::class)->prefix('/district')->name('district.')
     ->group(function () {
@@ -145,9 +155,9 @@ Route::prefix('/admin')->as('admin.')->middleware(['auth','roles:admin'])->group
     ->group(function () {
         Route::get('/all', 'UpazilaAll')->name('index');
         Route::get('/create', 'UpazilaCreate')->name('create');
-        // Route::post('/store', 'PackageStore')->name('store');
-        // Route::get('/edit/{id}', 'PackageEdit')->name('edit');
-        // Route::put('/update/{id}', 'PackageUpdate')->name('update');
+        Route::post('/store', 'UpazilaStore')->name('store');
+        Route::get('/edit/{id}', 'UpazilaEdit')->name('edit');
+        Route::put('/update/{id}', 'UpazilaUpdate')->name('update');
         // Route::delete('/delete/{id}', 'PackageDelete')->name('delete');
     });
 });
@@ -169,6 +179,9 @@ Route::prefix('/admin')->as('admin.')->middleware(['auth','roles:admin'])->group
     Route::get('/payment-package/list', [AdminController::class, 'PaymentPackageList'])->name('payment-package.list');
     // Reserve Property
     Route::get('/reserve-property/list', [AdminController::class, 'ReservePropertyList'])->name('reserve-property.list');
+    // What you setting
+    Route::get('/what-you-setting/edit', [SettingController::class, 'WhatYouSetting'])->name('what-you-setting.edit');
+    Route::post('/what-you-setting/update/{id}', [SettingController::class, 'WhatYouSettingUp'])->name('what-you-setting.update');
 });
 
 Route::middleware(['auth','roles:manager'])->group(function () {
