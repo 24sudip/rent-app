@@ -12,13 +12,28 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Toastr;
-use App\Models\{Division, PropertyCategory, Property, Room};
+use App\Models\{Division, PropertyCategory, Property, Room, Upazila};
 
 class FrontendController extends Controller
 {
     public function index() {
         return view('rent-frontend.index', [
-            'property_categories'=>PropertyCategory::get(['id','name','category_photo'])
+            'property_categories'=>PropertyCategory::get(['id','name','category_photo']),
+            
+        ]);
+    }
+
+    public function AllUpazila() {
+        $upazilas =  Upazila::with('district')->orderBy('name','asc')->get();
+        return response()->json($upazilas);
+    }
+
+    public function UpazilaProperties($property_category_id, $upazilla_id) {
+        return view('rent-frontend.upazilla-property', [
+            'properties'=>Property::with('multi_images','rooms')->where('property_category_id', $property_category_id)
+            ->where('upazilla_id', $upazilla_id)->get(),
+            'property_category_id'=>$property_category_id,
+            'divisions' => Division::get(['id','name'])
         ]);
     }
 

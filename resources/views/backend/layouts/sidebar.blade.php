@@ -10,10 +10,6 @@
                 {{-- <a href="javascript:void(0);" class="{{ request()->routeIs('admin.user.*') ? 'mact' : '' }}">Users</a> --}}
                 <div>
                     <ol>
-                        <li>
-                            <a href="{{ route('admin.package.index') }}"
-                                class="{{ request()->routeIs('admin.package.index') ? 's-act' : '' }}">Package</a>
-                        </li>
                         {{-- @foreach ($plans as $plan)
                             <li>
                                 <a href="{{ route('admin.user.manage', ['plan' => strtolower($plan->name)]) }}"
@@ -21,31 +17,36 @@
                                     Users</a>
                             </li>
                         @endforeach --}}
-                        <li>
-                            <a href="{{ route('admin.property-category.index') }}"
-                                class="{{ request()->routeIs('admin.property-category.*') ? 's-act' : '' }}">
-                                Property Category
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('admin.property-status.index') }}"
-                                class="{{ request()->routeIs('admin.property-status.index') ? 's-act' : '' }}">
-                                Property List
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('admin.package-order.index') }}"
-                                class="{{ request()->routeIs('admin.package-order.index') ? 's-act' : '' }}">
-                                Package Order
-                            </a>
-                        </li>
                     </ol>
                 </div>
             </li>
 
-            <li class="ic-noti">
+            <li class="ic-pay">
+                <a href="{{ route('admin.package.index') }}"
+                    class="{{ request()->routeIs('admin.package.index') ? 's-act' : '' }}">Package</a>
+            </li>
+            <li class="ic-pay">
+                <a href="{{ route('admin.property-category.index') }}"
+                    class="{{ request()->routeIs('admin.property-category.*') ? 's-act' : '' }}">
+                    Property Category
+                </a>
+            </li>
+
+            <li class="ic-pay">
+                <a href="{{ route('admin.property-status.index') }}"
+                    class="{{ request()->routeIs('admin.property-status.index') ? 's-act' : '' }}">
+                    Property List
+                </a>
+            </li>
+
+            <li class="ic-pay">
+                <a href="{{ route('admin.package-order.index') }}"
+                    class="{{ request()->routeIs('admin.package-order.index') ? 's-act' : '' }}">
+                    Package Order
+                </a>
+            </li>
+            {{-- ic-noti --}}
+            <li class="ic-pay">
                 <a href="{{ route('admin.payment-package.list') }}"
                     class="{{ request()->routeIs('admin.payment-package.list') ? 's-act' : '' }}">
                     Package Payment

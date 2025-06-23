@@ -54,7 +54,8 @@ class UserController extends Controller {
 
         $matchingUsers = $this->getMatchingUsers();
 
-        return view('frontend.user.dashboard', compact('profile_completion', 'userPackage', 'package', 'chatListUsers', 'matchingUsers'));
+        // return view('frontend.user.dashboard', compact('profile_completion', 'userPackage', 'package', 'chatListUsers', 'matchingUsers'));
+        return view('backend.dashboard.index', compact('profile_completion', 'userPackage', 'package', 'chatListUsers', 'matchingUsers'));
     }
 
     public function profile(){

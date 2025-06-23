@@ -19,8 +19,13 @@ use App\Http\Controllers\Backend\{DistrictController, UpazilaController, Setting
 |
 */
 Route::get('/', [FrontendController::class, 'index'])->name('index');
-Route::get('/clear/filter/{property_category_id}', [FrontendController::class, 'ClearFilter'])->name('clear.filter');
 Route::get('/property/details/{id}', [FrontendController::class, 'PropertyDetails'])->name('property.details');
+
+Route::get('/upzillas/districts', [FrontendController::class, 'AllUpazila']);
+Route::get('/property-category/{property_category_id}/upazilla/{upazilla_id}', [FrontendController::class, 'UpazilaProperties']);
+
+Route::get('/clear/filter/{property_category_id}', [FrontendController::class, 'ClearFilter'])->name('clear.filter');
+
 Route::post('/search/location', [FrontendController::class, 'SearchLocation'])->name('search.location');
 Route::post('/filter/location', [FrontendController::class, 'FilterLocation'])->name('filter.location');
 Route::post('/filter/room-type', [FrontendController::class, 'FilterRoomType'])->name('filter.room-type');
