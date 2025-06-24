@@ -17,7 +17,7 @@ input {
 
 .search-form {
   max-width: 400px;
-  margin: 50px auto;
+  margin: 10px auto;
 }
 
 input.search {

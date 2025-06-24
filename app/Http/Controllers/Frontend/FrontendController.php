@@ -12,14 +12,25 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Toastr;
-use App\Models\{Division, PropertyCategory, Property, Room, Upazila};
+use App\Models\{Division, PropertyCategory, Property, Room, Upazila, WhatYouSetting, WhatYouItem, Reward, Passport};
 
 class FrontendController extends Controller
 {
     public function index() {
         return view('rent-frontend.index', [
             'property_categories'=>PropertyCategory::get(['id','name','category_photo']),
-            
+            'what_you_setting'=>WhatYouSetting::first(),
+            'what_you_items'=>WhatYouItem::latest()->get(['id','photo','title','description']),
+            // 'rewards'=>Reward::latest()->get(['id','photo','title','description']),
+            // 'passport'
+        ]);
+    }
+
+    public function CategoryProperties($id) {
+        return view('rent-frontend.rent-category', [
+            'properties'=>Property::with('multi_images','rooms')->where('property_category_id', $id)->get(),
+            'property_category_id'=>$id,
+            'divisions' => Division::get(['id','name'])
         ]);
     }
 

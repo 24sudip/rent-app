@@ -16,7 +16,7 @@
 <!-- properties -->
 
 <!-- rewards -->
-@include('rent-frontend.home.reward')
+{{-- @include('rent-frontend.home.reward') --}}
 <!-- rewards -->
 
 <!-- passport -->

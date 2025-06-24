@@ -89,6 +89,12 @@
                     WhatYou Items
                 </a>
             </li>
+            <li class="ic-pay">
+                <a href="{{ route('admin.reward.index') }}"
+                    class="{{ request()->routeIs('admin.reward.*') ? 's-act' : '' }}">
+                    Rewards
+                </a>
+            </li>
 
             <li>
                 <h4>Enquiries</h4>

@@ -39,50 +39,55 @@
 </head>
 
 <body>
-    <!-- HEAD -->
+    <!-- NAV START -->
     @include('backend.layouts.navbar')
-    <!-- END -->
-    <!-- COPYRIGHTS -->
+    <!-- NAV END -->
+
+    <!-- MAIN START -->
     <section>
         <div class="main">
             <div class="incon">
                 <div class="row">
-                    @include('backend.layouts.sidebar')
+                    <div class="col-lg-2">
+                        @include('backend.layouts.sidebar')
+                    </div>
+                    <div class="col-lg-10">
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success!</strong> {{ session('success') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
 
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Success!</strong> {{ session('success') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Error!</strong> {{ session('error') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
 
-                    @if (session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Error!</strong> {{ session('error') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
+                        @if (session('warning'))
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Warning!</strong> {{ session('warning') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
 
-                    @if (session('warning'))
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <strong>Warning!</strong> {{ session('warning') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
-
-                    @yield('content')
+                        @yield('content')
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- END -->
-    <!-- COPYRIGHTS -->
+    <!-- MAIN END -->
+
+    <!-- COPYRIGHTS START -->
     <section>
         <div class="cr">
             <div class="container">
@@ -95,8 +100,10 @@
             </div>
         </div>
     </section>
-    <!-- END -->
+    <!-- COPYRIGHTS END -->
+
     <!-- Optional JavaScript -->
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('admin-backend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('admin-backend/js/popper.min.js') }}"></script>

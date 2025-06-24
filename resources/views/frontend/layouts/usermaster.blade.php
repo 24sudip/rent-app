@@ -70,6 +70,12 @@
                                         </a>
                                     </li>
                                     <li>
+                                        <a href="{{ route('admin.reward.index') }}"
+                                            class="{{ request()->routeIs('admin.reward.*') ? 'act' : '' }}">
+                                            <i class="fa fa-money" aria-hidden="true"></i>Rewards 
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('admin.logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a>
                                     </li>
                                 </ul>
@@ -151,5 +157,5 @@
         </script>
         @stack('user-script')
     @endpush
-    
+
 @endsection

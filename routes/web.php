@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\{AuthController, InvitationController, UserCon
 use App\Http\Controllers\Frontend\{FrontendController, SubscriptionController, WishlistController};
 use App\Http\Controllers\Backend\{PropertyCategoryController, PropertyController, MultiImageController, PackageController};
 use App\Http\Controllers\Backend\{DistrictController, UpazilaController, SettingController, WhatYouController};
+use App\Http\Controllers\Backend\RewardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,7 @@ use App\Http\Controllers\Backend\{DistrictController, UpazilaController, Setting
 */
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/property/details/{id}', [FrontendController::class, 'PropertyDetails'])->name('property.details');
+Route::get('/category/{id}/properties', [FrontendController::class, 'CategoryProperties'])->name('category.properties');
 
 Route::get('/upzillas/districts', [FrontendController::class, 'AllUpazila']);
 Route::get('/property-category/{property_category_id}/upazilla/{upazilla_id}', [FrontendController::class, 'UpazilaProperties']);
@@ -164,6 +166,16 @@ Route::prefix('/admin')->as('admin.')->middleware(['auth','roles:admin'])->group
         Route::get('/edit/{id}', 'UpazilaEdit')->name('edit');
         Route::put('/update/{id}', 'UpazilaUpdate')->name('update');
         // Route::delete('/delete/{id}', 'PackageDelete')->name('delete');
+    });
+    // Reward
+    Route::controller(RewardController::class)->prefix('/reward')->name('reward.')
+    ->group(function () {
+        Route::get('/all', 'RewardAll')->name('index');
+        Route::get('/create', 'RewardCreate')->name('create');
+        Route::post('/store', 'RewardStore')->name('store');
+        Route::get('/edit/{id}', 'RewardEdit')->name('edit');
+        Route::put('/update/{id}', 'RewardUpdate')->name('update');
+        Route::delete('/delete/{id}', 'RewardDelete')->name('delete');
     });
 });
 
